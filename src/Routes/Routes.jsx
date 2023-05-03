@@ -5,6 +5,8 @@ import Login from '../Home/Login';
 import Register from '../Home/Register';
 import Main from '../Main/Main';
 import Blog from '../Blog/Blog';
+import ChefSection from '../ChefSection/ChefSection';
+import Chef from '../Chef/Chef';
 
 export const router = createBrowserRouter([
   {
@@ -27,8 +29,25 @@ export const router = createBrowserRouter([
         path: '/blog',
         element: <Blog></Blog>,
       },
+      {
+        path: '/chefs',
+        element: <ChefSection></ChefSection>,
+        loader: () => fetch(`http://localhost:5300/chefs`),
+      },
     ],
   },
+  // {
+  //   path: '/chefs',
+  //   element: <ChefSection></ChefSection>,
+  //   children: [
+  //     {
+  //       path: ':id',
+  //       element: <Chef></Chef>,
+  //       loader: ({ params }) =>
+  //         fetch(`http://localhost:5300/chefs/${params.id}`),
+  //     },
+  //   ],
+  // },
 ]);
 
 const Routes = () => {
