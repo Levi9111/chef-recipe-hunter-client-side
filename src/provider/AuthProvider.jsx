@@ -7,6 +7,7 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  GithubAuthProvider,
 } from 'firebase/auth';
 import app from './../Firebase/firebase.config.js';
 
@@ -28,6 +29,11 @@ const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const googleLogIn = () => {
     return signInWithPopup(auth, googleProvider);
+  };
+
+  const githubProvider = new GithubAuthProvider();
+  const githubLogin = () => {
+    return signInWithPopup(auth, githubProvider);
   };
 
   useEffect(() => {
@@ -53,6 +59,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     loading,
     googleLogIn,
+    githubLogin,
   };
   // const user = {displayName: 'John Smith'};
   return (

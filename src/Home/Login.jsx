@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 function Login() {
-  const { logIn, googleLogIn } = useContext(AuthContext);
+  const { logIn, googleLogIn, githubLogin } = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,10 +29,21 @@ function Login() {
         const { user } = res;
         console.log(user);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+      });
   };
 
-  const githubSubmit = e => {};
+  const githubSubmit = e => {
+    githubLogin()
+      .then(res => {
+        const { user } = res;
+        console.log(user);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="max-w-md mx-auto mt-4 p-6 bg-white shadow-md rounded-lg">
@@ -77,9 +89,9 @@ function Login() {
           </button>
           <p className="text-gray-700">
             Don't have an account?{' '}
-            <a href="/register" className="text-blue-500 hover:text-blue-700">
+            <Link to="/register" className="text-blue-500 hover:text-blue-700">
               Register here
-            </a>
+            </Link>
           </p>
         </div>
       </form>
@@ -90,7 +102,10 @@ function Login() {
         >
           <FaGoogle size={24} />
         </button>
-        <button className="bg-gray-800 text-white p-2 rounded-full">
+        <button
+          onClick={githubSubmit}
+          className="bg-gray-800 text-white p-2 rounded-full"
+        >
           <FaGithub size={24} />
         </button>
       </div>
