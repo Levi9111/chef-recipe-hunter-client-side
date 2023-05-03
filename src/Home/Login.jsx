@@ -3,7 +3,7 @@ import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
 
 function Login() {
-  const { logIn } = useContext(AuthContext);
+  const { logIn, googleLogIn } = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +21,17 @@ function Login() {
       })
       .catch(err => console.log(err));
   };
+
+  const googleSubmit = e => {
+    googleLogIn()
+      .then(res => {
+        const { user } = res;
+        console.log(user);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const githubSubmit = e => {};
 
   return (
     <div className="max-w-md mx-auto mt-4 p-6 bg-white shadow-md rounded-lg">
@@ -73,7 +84,10 @@ function Login() {
         </div>
       </form>
       <div className="mt-4 flex justify-center items-center">
-        <button className="bg-red-600 text-white p-2 rounded-full mr-4">
+        <button
+          onClick={googleSubmit}
+          className="bg-red-600 text-white p-2 rounded-full mr-4"
+        >
           <FaGoogle size={24} />
         </button>
         <button className="bg-gray-800 text-white p-2 rounded-full">
