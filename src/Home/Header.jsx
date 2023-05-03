@@ -1,11 +1,21 @@
 import userProfileUrl from './../assets/7309667.png';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { AuthContext } from '../provider/AuthProvider';
 
 function Header() {
+  const { user, logOut } = useContext(AuthContext);
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLogOut = e => {
+    e.preventDefault();
+    logOut()
+      .then()
+      .catch(err => console.log(err));
+  };
 
   return (
     <nav className="bg-gray-800">
@@ -20,7 +30,7 @@ function Header() {
           <Link to="/blog" className="mx-4 text-gray-300 hover:text-white">
             Blog
           </Link>
-          {loggedIn ? (
+          {user ? (
             <>
               <Link to="">
                 <img
@@ -30,7 +40,8 @@ function Header() {
                 />
               </Link>
               <Link
-                to="/logout"
+                to=""
+                onClick={handleLogOut}
                 className="mx-4 bg-white text-gray-800 font-medium py-2 px-4 rounded"
               >
                 Log Out
