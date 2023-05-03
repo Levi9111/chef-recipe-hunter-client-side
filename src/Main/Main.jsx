@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import Banner from '../Components/Banner/Banner';
 
 const Main = () => {
-  return <div>Main Body of the web page</div>;
+  return (
+    <div>
+      <Banner></Banner>
+    </div>
+  );
 };
 
 export default Main;

@@ -1,0 +1,45 @@
+.banner {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fbd38d;
+  background-image: url(./../../assets/johnathan.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+
+.banner-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.banner-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #d6cccc;
+}
+
+.banner-description {
+  font-size: 1.5rem;
+  margin-bottom: 4rem;
+  color: #b3b3b3;
+}
+
+.banner-button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.banner-button:hover {
+  background-color: #fff;
+  color: #000;
+}
