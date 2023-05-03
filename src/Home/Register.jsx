@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
+import { AuthContext } from '../provider/AuthProvider';
 
 function Register() {
+  const { createUser } = useContext(AuthContext);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,6 +14,7 @@ function Register() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setError('');
     if (!email || !password) {
       setError('Please enter email and password');
       return;
@@ -20,6 +24,12 @@ function Register() {
       return;
     }
     // Your registration logic goes here
+    createUser(email, password)
+      .then(res => {
+        const user = res.user;
+        console.log(user);
+      })
+      .catch(err => setError(err));
   };
 
   return (

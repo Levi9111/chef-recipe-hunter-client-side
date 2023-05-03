@@ -1,13 +1,25 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
+import { AuthContext } from '../provider/AuthProvider';
 
 function Login() {
+  const { logIn } = useContext(AuthContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
     // TODO: implement login functionality
+    logIn(email, password)
+      .then(res => {
+        const { user } = res;
+        console.log(user);
+        // navigation(from, { replace: true });
+        setEmail('');
+        setPassword('');
+      })
+      .catch(err => console.log(err));
   };
 
   return (
