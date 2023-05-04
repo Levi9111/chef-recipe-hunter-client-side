@@ -10,4 +10,9 @@ This is a website for a restaurant called Eatery Italiano. It has the following 
 - A login button that redirects to the login page. If the user does not have an account, they can click the "register" button
 - Backend is powered by Firebase, and the Firebase config file is hidden inside the .env file.
 
-Visit the live site at <insert-link-here>
+Visit the live site at [https://eatery-italiano.web.app/]
+
+# For each deploy to firebase
+
+- npm run build
+- firebase deploy

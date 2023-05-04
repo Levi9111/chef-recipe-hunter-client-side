@@ -6,7 +6,6 @@ import { AuthContext } from '../provider/AuthProvider';
 
 function Header() {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

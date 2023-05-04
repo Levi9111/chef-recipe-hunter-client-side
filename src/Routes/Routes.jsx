@@ -22,7 +22,9 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Main></Main>,
         loader: async () => {
-          const response = await fetch('http://localhost:5300/chefs');
+          const response = await fetch(
+            'https://eatery-server-shanjidahmad1234-gmailcom.vercel.app/chefs'
+          );
           const data = await response.json();
           return data;
         },
@@ -47,15 +49,9 @@ export const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5300/chefs/${params.id}`),
-        // children: [
-        //   {
-        //     path: '/recipeFescription/:id',
-        //     element: <RecipeDescription></RecipeDescription>,
-        //     loader: ({ params }) =>
-        //       fetch(`http://localhost:5300/recipeFescription/${params.id}`),
-        // },
-        // ],
+          fetch(
+            `https://eatery-server-shanjidahmad1234-gmailcom.vercel.app/chefs/${params.id}`
+          ),
       },
     ],
   },

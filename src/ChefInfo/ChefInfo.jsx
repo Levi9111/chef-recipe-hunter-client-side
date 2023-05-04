@@ -11,7 +11,6 @@ import Rating from 'react-rating';
 
 const ChefInfo = () => {
   const chefInfo = useLoaderData();
-  console.log(chefInfo);
   const {
     id,
     image,
