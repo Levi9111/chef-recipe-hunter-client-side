@@ -1,16 +1,17 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
-  apiKey: "AIzaSyClf7yFdf0V3MX64Rg6IfQ9bVy4j6evmak",
-  authDomain: "eatery-italiano.firebaseapp.com",
-  projectId: "eatery-italiano",
-  storageBucket: "eatery-italiano.appspot.com",
-  messagingSenderId: "320282076263",
-  appId: "1:320282076263:web:6e70853a6d11a33ffbe0c2"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
