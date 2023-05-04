@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ChefInfo = () => {
   const chefInfo = useLoaderData();
-  console.log(chefInfo);
+  // console.log(chefInfo);
   const {
     id,
     image,
@@ -13,8 +15,21 @@ const ChefInfo = () => {
     likes,
     numRecipes,
     recipes,
+    recipesDescription,
   } = chefInfo;
-  console.log(recipes);
+  console.log(recipesDescription);
+  const [favorites, setFavorites] = useState([]);
+
+  const toggleFavorite = index => {
+    const recipe = recipes[index];
+    if (favorites.includes(recipe)) {
+      setFavorites(favorites.filter(fav => fav !== recipe));
+    } else {
+      setFavorites([...favorites, recipe]);
+      // toast.success(`Added ${name} to favorites!`);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
@@ -54,9 +69,36 @@ const ChefInfo = () => {
             />
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2">{recipe}</h3>
-              <p className="text-gray-600 mb-2">{description}</p>
+              <p className="text-gray-600 mb-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                pharetra dolor vel blandit varius.
+              </p>
               <p className="font-semibold text-lg">${(index + 1) * 10}.00</p>
+              <button
+                onClick={() => {
+                  window.location.href = `/chefs/${id}`;
+                }}
+              >
+                Show Details
+              </button>
+
+              <div className="flex items-center mt-2">
+                <button
+                  className={`mr-2 ${
+                    favorites.includes(recipe)
+                      ? 'text-red-500'
+                      : 'text-gray-500'
+                  }`}
+                  onClick={() => toggleFavorite(index)}
+                >
+                  Favorite
+                </button>
+                <span className="text-gray-500">
+                  {favorites.includes(recipe) ? 'Favorited' : 'Not favorited'}
+                </span>
+              </div>
             </div>
+            <ToastContainer />
           </div>
         ))}
       </div>

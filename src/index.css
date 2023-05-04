@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.active {
+  @apply font-medium tracking-wide text-cyan-600 transition-colors me-4 duration-200;
+}
+
+.default {
+  @apply font-medium tracking-wide text-white transition-colors me-4 duration-200;
+}

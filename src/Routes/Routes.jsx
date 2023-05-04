@@ -5,14 +5,17 @@ import Login from '../Home/Login';
 import Register from '../Home/Register';
 import Main from '../Main/Main';
 import Blog from '../Blog/Blog';
+import ChefInfo from '../ChefInfo/ChefInfo';
+import Error from '../Error/Error';
 import ChefSection from '../ChefSection/ChefSection';
 import Chef from '../Chef/Chef';
-import ChefInfo from '../ChefInfo/ChefInfo';
+import RecipeDescription from '../RecipeDescription/RecipeDescription';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Home></Home>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: '/',
@@ -20,7 +23,6 @@ export const router = createBrowserRouter([
         loader: async () => {
           const response = await fetch('http://localhost:5300/chefs');
           const data = await response.json();
-          console.log('Data fetched:', data);
           return data;
         },
       },
@@ -41,21 +43,17 @@ export const router = createBrowserRouter([
         element: <ChefInfo></ChefInfo>,
         loader: ({ params }) =>
           fetch(`http://localhost:5300/chefs/${params.id}`),
+        // children: [
+        //   {
+        //     path: '/recipeFescription/:id',
+        //     element: <RecipeDescription></RecipeDescription>,
+        //     loader: ({ params }) =>
+        //       fetch(`http://localhost:5300/recipeFescription/${params.id}`),
+        // },
+        // ],
       },
     ],
   },
-  // {
-  //   path: '/chefs',
-  //   element: <ChefSection></ChefSection>,
-  //   children: [
-  //     {
-  //       path: ':id',
-  //       element: <Chef></Chef>,
-  //       loader: ({ params }) =>
-  //         fetch(`http://localhost:5300/chefs/${params.id}`),
-  //     },
-  //   ],
-  // },
 ]);
 
 const Routes = () => {
