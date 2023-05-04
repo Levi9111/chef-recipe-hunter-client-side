@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import './ChefInfo.css';
 import { useLoaderData } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import LazyLoad from 'react-lazy-load';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ChefInfo = () => {
@@ -17,7 +19,7 @@ const ChefInfo = () => {
     recipes,
     recipesDescription,
   } = chefInfo;
-  console.log(recipesDescription);
+  // console.log(recipesDescription);
   const [favorites, setFavorites] = useState([]);
 
   const toggleFavorite = index => {
@@ -34,7 +36,20 @@ const ChefInfo = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
         <div className="w-full md:w-1/2 mb-4 md:mb-0">
-          <img src={image} alt={name} className="w-full h-auto" />
+          <LazyLoad
+            height={762}
+            width={400}
+            onContentVisible={() => {
+              console.log('loaded!');
+            }}
+          >
+            <img
+              src={image}
+              alt={name}
+              className="w-[100%] h-auto"
+              placeholder={<div className="loader">Loading...</div>}
+            />
+          </LazyLoad>
         </div>
         <div className="w-full md:w-1/2 md:pl-6">
           <h1 className="text-3xl font-bold mb-2">{name}</h1>
