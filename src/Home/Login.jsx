@@ -1,22 +1,28 @@
 import { useContext, useState } from 'react';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
-import { Link } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigation,
+} from 'react-router-dom';
 
 function Login() {
   const { logIn, googleLogIn, githubLogin } = useContext(AuthContext);
+  const navigation = useNavigate();
+  const location = useLocation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    // TODO: implement login functionality
     logIn(email, password)
       .then(res => {
         const { user } = res;
         console.log(user);
-        // navigation(from, { replace: true });
+        navigation(location.state?.from || '/', { replace: true });
         setEmail('');
         setPassword('');
       })

@@ -19,20 +19,24 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const logIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const googleProvider = new GoogleAuthProvider();
   const googleLogIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const githubProvider = new GithubAuthProvider();
   const githubLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, githubProvider);
   };
 

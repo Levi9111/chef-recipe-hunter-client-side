@@ -10,6 +10,7 @@ import Error from '../Error/Error';
 import ChefSection from '../ChefSection/ChefSection';
 import Chef from '../Chef/Chef';
 import RecipeDescription from '../RecipeDescription/RecipeDescription';
+import PrivateRouter from '../route/PrivateRoute';
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +41,11 @@ export const router = createBrowserRouter([
       },
       {
         path: '/chefs/:id',
-        element: <ChefInfo></ChefInfo>,
+        element: (
+          <PrivateRouter>
+            <ChefInfo></ChefInfo>
+          </PrivateRouter>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5300/chefs/${params.id}`),
         // children: [
