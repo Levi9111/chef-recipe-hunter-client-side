@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaHeart, FaRegEye } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
 
 const Chef = ({ chef }) => {
@@ -14,24 +15,23 @@ const Chef = ({ chef }) => {
   } = chef;
   console.log(chef);
   return (
-    <div>
-      <div className="border border-yellow-500 rounded-lg p-4">
-        <img
-          className="mx-auto rounded-full w-32 h-32 object-cover"
-          src={image}
-          alt="Chef's picture"
-        />
-        <h2 className="text-2xl font-bold text-orange-500 mt-4 mb-2">{name}</h2>
-        <p className="text-lg font-medium text-gray-700 mb-2">
-          Years of experience: {experience}
-        </p>
-        <p className="text-lg font-medium text-gray-700 mb-2">
-          Number of recipes: {numRecipes}
-        </p>
-        <p className="text-lg font-medium text-gray-700 mb-4">Likes: {likes}</p>
-        <button className="bg-orange-500 hover:bg-orange-400 text-white font-medium py-2 px-4 rounded">
-          View Recipes
-        </button>
+    <div className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img src={image} alt="Chef" className="w-full h-48 object-cover" />
+      <div className="p-4">
+        <h2 className="text-2xl font-semibold mb-2">{name}</h2>
+        <h3 className="text-lg font-semibold mb-2">Years of Experience:</h3>
+        <p className="mb-2">{experience}</p>
+        <h3 className="text-lg font-semibold mb-2">Number of Recipes:</h3>
+        <p className="mb-2">{numRecipes}</p>
+        <h3 className="text-lg font-semibold mb-2 flex items-center">
+          <FaHeart className="mr-2 text-red-500" /> Likes:
+        </h3>
+        <p className="mb-2">{likes}</p>
+        <div className="flex justify-end">
+          <button className="bg-blue-500 text-white px-4 py-2 rounded-full flex items-center, justify-center">
+            <FaRegEye className="mr-2" /> View Recipes
+          </button>
+        </div>
       </div>
     </div>
   );
