@@ -4,10 +4,14 @@ import { useLoaderData } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import LazyLoad from 'react-lazy-load';
 import 'react-toastify/dist/ReactToastify.css';
+import RecipeCards from '../RecipeCards/RecipeCards';
+import LinkingTitle from '../Home/LinkingTitle';
+import { FaEye, FaRegStar, FaRegStarHalf, FaStar } from 'react-icons/fa';
+import Rating from 'react-rating';
 
 const ChefInfo = () => {
   const chefInfo = useLoaderData();
-  // console.log(chefInfo);
+  console.log(chefInfo);
   const {
     id,
     image,
@@ -18,6 +22,7 @@ const ChefInfo = () => {
     numRecipes,
     recipes,
     recipesDescription,
+    ratings,
   } = chefInfo;
   // console.log(recipesDescription);
   const [favorites, setFavorites] = useState([]);
@@ -68,6 +73,18 @@ const ChefInfo = () => {
             </span>
             <span>{numRecipes}</span>
           </div>
+          <div className="d-flex align-items-center">
+            <p className="text-lg font-semibold mr-2">Ratings:</p>
+            <Rating
+              className="me-2"
+              readonly
+              placeholderRating={ratings}
+              emptySymbol={<FaRegStar></FaRegStar>}
+              placeholderSymbol={<FaStar className="text-red-700"></FaStar>}
+              fullSymbol={<FaStar></FaStar>}
+            ></Rating>
+            {ratings}
+          </div>
         </div>
       </div>
       <h2 className="text-2xl font-bold mb-4">Recipes</h2>
@@ -84,39 +101,15 @@ const ChefInfo = () => {
             />
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2">{recipe}</h3>
-              <p className="text-gray-600 mb-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                pharetra dolor vel blandit varius.
-              </p>
+              <p className="text-gray-600 mb-2">{description}</p>
               <p className="font-semibold text-lg">${(index + 1) * 10}.00</p>
-              <button
-                onClick={() => {
-                  window.location.href = `/chefs/${id}`;
-                }}
-              >
-                Show Details
-              </button>
-
-              <div className="flex items-center mt-2">
-                <button
-                  className={`mr-2 ${
-                    favorites.includes(recipe)
-                      ? 'text-red-500'
-                      : 'text-gray-500'
-                  }`}
-                  onClick={() => toggleFavorite(index)}
-                >
-                  Favorite
-                </button>
-                <span className="text-gray-500">
-                  {favorites.includes(recipe) ? 'Favorited' : 'Not favorited'}
-                </span>
-              </div>
             </div>
             <ToastContainer />
           </div>
         ))}
       </div>
+      <LinkingTitle>Chef {name}'s Recipes. </LinkingTitle>
+      <RecipeCards key={id} recipes={recipesDescription}></RecipeCards>
     </div>
   );
 };

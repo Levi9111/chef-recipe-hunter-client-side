@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaFilePdf } from 'react-icons/fa';
-import ReactToPdf from 'react-to-pdf';
+// import ReactToPdf from 'react-to-pdf';
 
 function Blog() {
   const [pdfButtonDisabled, setPdfButtonDisabled] = useState(false);
