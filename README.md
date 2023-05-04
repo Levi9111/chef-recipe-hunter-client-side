@@ -1,3 +1,7 @@
+# Visit the live site at
+
+[https://eatery-italiano.web.app/]
+
 # Eatery Italiano
 
 This is a website for a restaurant called Eatery Italiano. It has the following features:
@@ -9,8 +13,6 @@ This is a website for a restaurant called Eatery Italiano. It has the following 
 - A blog section that shows blogs
 - A login button that redirects to the login page. If the user does not have an account, they can click the "register" button
 - Backend is powered by Firebase, and the Firebase config file is hidden inside the .env file.
-
-Visit the live site at [https://eatery-italiano.web.app/]
 
 # For each deploy to firebase
 
