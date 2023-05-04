@@ -4,7 +4,6 @@ import Chef from '../Chef/Chef';
 
 const ChefSection = ({ chefsData }) => {
   const chefs = chefsData.chefs;
-  console.log(chefs);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 w-3/4 mx-auto">
       {chefs.map(chef => (

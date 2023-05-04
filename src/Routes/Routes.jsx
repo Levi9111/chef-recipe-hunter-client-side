@@ -7,6 +7,7 @@ import Main from '../Main/Main';
 import Blog from '../Blog/Blog';
 import ChefSection from '../ChefSection/ChefSection';
 import Chef from '../Chef/Chef';
+import ChefInfo from '../ChefInfo/ChefInfo';
 
 export const router = createBrowserRouter([
   {
@@ -35,10 +36,12 @@ export const router = createBrowserRouter([
         path: '/blog',
         element: <Blog></Blog>,
       },
-      // {
-      //   path: '/chefs',
-      //   element: <ChefSection></ChefSection>,
-      // },
+      {
+        path: '/chefs/:id',
+        element: <ChefInfo></ChefInfo>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5300/chefs/${params.id}`),
+      },
     ],
   },
   // {

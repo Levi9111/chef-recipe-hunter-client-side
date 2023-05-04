@@ -13,7 +13,6 @@ const Chef = ({ chef }) => {
     description,
     likes,
   } = chef;
-  console.log(chef);
   return (
     <div className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
       <img src={image} alt="Chef" className="w-full h-48 object-cover" />
@@ -28,7 +27,12 @@ const Chef = ({ chef }) => {
         </h3>
         <p className="mb-2">{likes}</p>
         <div className="flex justify-end">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-full flex items-center, justify-center">
+          <button
+            onClick={() => {
+              window.location.href = `/chefs/${id}`;
+            }}
+            className="bg-blue-500 text-white px-4 py-2 rounded-full flex items-center, justify-center"
+          >
             <FaRegEye className="mr-2" /> View Recipes
           </button>
         </div>
