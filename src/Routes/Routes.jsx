@@ -16,6 +16,12 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Main></Main>,
+        loader: async () => {
+          const response = await fetch('http://localhost:5300/chefs');
+          const data = await response.json();
+          console.log('Data fetched:', data);
+          return data;
+        },
       },
       {
         path: '/login',
@@ -29,11 +35,10 @@ export const router = createBrowserRouter([
         path: '/blog',
         element: <Blog></Blog>,
       },
-      {
-        path: '/chefs',
-        element: <ChefSection></ChefSection>,
-        loader: () => fetch(`http://localhost:5300/chefs`),
-      },
+      // {
+      //   path: '/chefs',
+      //   element: <ChefSection></ChefSection>,
+      // },
     ],
   },
   // {
