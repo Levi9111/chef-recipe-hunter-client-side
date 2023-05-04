@@ -33,7 +33,7 @@ const ChefInfo = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 overflow-hidden">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
         <div className="w-full md:w-1/2 mb-4 md:mb-0">
           <LazyLoad
@@ -46,7 +46,7 @@ const ChefInfo = () => {
             <img
               src={image}
               alt={name}
-              className="w-[100%] h-auto"
+              className="w-1/4 sm:w-1/2 md:w-[100%] h-auto "
               placeholder={<div className="loader">Loading...</div>}
             />
           </LazyLoad>

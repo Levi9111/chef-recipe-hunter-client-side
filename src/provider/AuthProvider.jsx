@@ -12,7 +12,7 @@ import {
 import app from './../Firebase/firebase.config.js';
 
 export const AuthContext = createContext(null);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -42,7 +42,6 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      console.log(currentUser);
       setUser(currentUser);
       setLoading(false);
     });
@@ -65,7 +64,6 @@ const AuthProvider = ({ children }) => {
     googleLogIn,
     githubLogin,
   };
-  // const user = {displayName: 'John Smith'};
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

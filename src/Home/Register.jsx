@@ -1,10 +1,11 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
-import { AuthContext } from '../provider/AuthProvider';
+import { AuthContext, auth } from '../provider/AuthProvider';
+import { updateProfile } from 'firebase/auth';
 
 function Register() {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, user } = useContext(AuthContext);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -23,11 +24,22 @@ function Register() {
       setError('Password must be at least 6 characters long');
       return;
     }
-    // Your registration logic goes here
+    //  registration logic
     createUser(email, password)
       .then(res => {
         const user = res.user;
+        // update profil
+        return updateProfile(user, {
+          displayName: name,
+          photoURL: photoUrl,
+        });
+      })
+      .then(() => {
+        console.log('Profile updated successfully');
+        console.log(user.photoURL);
         console.log(user);
+        // Update user state with new user data
+        setUser(auth.currentUser);
       })
       .catch(err => setError(err));
   };

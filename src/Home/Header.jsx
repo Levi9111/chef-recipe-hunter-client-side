@@ -6,6 +6,7 @@ import { AuthContext } from '../provider/AuthProvider';
 
 function Header() {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -48,9 +49,10 @@ function Header() {
             <>
               <Link to="">
                 <img
-                  src={userProfileUrl}
+                  src={user.photoURL}
                   alt="User profile"
                   className="h-8 w-8 rounded-full"
+                  title={user.displayName}
                 />
               </Link>
               <Link

@@ -1,8 +1,47 @@
+import { useState } from 'react';
+import { FaFilePdf } from 'react-icons/fa';
+import ReactToPdf from 'react-to-pdf';
+
 function Blog() {
+  const [pdfButtonDisabled, setPdfButtonDisabled] = useState(false);
+
+  const handlePdfButtonClick = () => {
+    setPdfButtonDisabled(true);
+    setTimeout(() => setPdfButtonDisabled(false), 5000); // re-enable after 5 seconds
+  };
+
+  const options = {
+    filename: 'blogs.pdf',
+    orientation: 'portrait',
+    unit: 'in',
+    format: [8.5, 11],
+  };
+
   return (
     <div className="bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8">Blogs</h1>
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-3xl font-bold">Blogs</h1>
+          {/* <ReactToPdf
+            targetRef={ref}
+            filename={options.filename}
+            options={options}
+          >
+            {({ toPdf }) => ( */}
+          <button
+            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
+            onClick={() => {
+              handlePdfButtonClick();
+              toPdf();
+            }}
+            disabled={pdfButtonDisabled}
+          >
+            <FaFilePdf className="inline-block mr-2" />
+            {pdfButtonDisabled ? 'Generating PDF...' : 'Download PDF'}
+          </button>
+          {/* )}
+          </ReactToPdf> */}
+        </div>
 
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Question 1:</h2>
@@ -74,3 +113,43 @@ function Blog() {
 }
 
 export default Blog;
+
+/**
+
+
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Question 3:</h2>
+          <p>
+            <strong>Difference between Node.js and Express.js:</strong>
+            Node.js is a runtime environment that allows you to execute
+            JavaScript code outside the browser. It provides a platform for
+            building server-side applications using JavaScript. Express.js, on
+            the other hand, is a web application framework for Node.js. It
+            provides a set of tools and utilities for building web applications
+            and APIs. Express.js simplifies the process of handling HTTP
+            requests, routing, middleware, and other common web application
+            tasks. Node.js is the foundation on which Express.js is built.
+          </p>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Question 4:</h2>
+          <p>
+            <strong>
+              What is a custom hook, and why would you create a custom hook?
+            </strong>
+            A custom hook is a JavaScript function that starts with the prefix
+            "use" and allows you to reuse stateful logic in functional
+            components. Custom hooks enable you to extract common functionality
+            from components and share that logic between different components.
+            By creating custom hooks, you can keep your code more organized,
+            reusable, and maintainable. Custom hooks are especially useful when
+            you have complex logic that needs to be shared across multiple
+            components, reducing code duplication and making it easier to manage
+            and test the shared logic.
+          </p>
+        </div>
+      </div>
+    </div>
+
+ */
